@@ -1,16 +1,14 @@
-from PIL import Image, ImageOps
+from PIL import Image
 import os
 
-input_path = r'C:\Users\ALMANPY\Desktop\al-rawasi-site-main\static-site\images\clients\nab-bank.png'
-# The new image provided by user
 new_img_path = r'C:\Users\ALMANPY\.gemini\antigravity\brain\be6bada8-007e-4a1a-92de-43706eda91c3\media__1781183528357.jpg'
-output_path = r'C:\Users\ALMANPY\Desktop\al-rawasi-site-main\static-site\images\clients\nab-bank.png'
+output_path = r'C:\Users\ALMANPY\Desktop\al-rawasi-site-main\static-site\images\clients\man-made-river.png'
 
 def process_logo(src, dst):
     img = Image.open(src).convert("RGBA")
     
     # Remove white background
-    datas = img.getdata()
+    datas = list(img.getdata())
     newData = []
     for item in datas:
         # If it's very close to white, make it transparent
@@ -33,5 +31,6 @@ def process_logo(src, dst):
     
     img.save(dst, "PNG")
     print(f"Processed {src} -> {dst}")
+    print(f"Size: {img.size}")
 
 process_logo(new_img_path, output_path)
